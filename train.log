@@ -1,0 +1,184 @@
+2022-04-13 12:03:01,803:INFO: Lock 2550785254120 acquired on C:\Users\wushuo/.cache\huggingface\transformers\b9f9ef46c5d893ee76a6e52cb006e301b6aa7c19d8cd1d7acb7acd09e11039c3.d789d64ebfe299b0e416afc4a169632f903f693095b4629a7ea271d5a0cf2c99.lock
+2022-04-13 12:03:03,840:INFO: Lock 2550785254120 released on C:\Users\wushuo/.cache\huggingface\transformers\b9f9ef46c5d893ee76a6e52cb006e301b6aa7c19d8cd1d7acb7acd09e11039c3.d789d64ebfe299b0e416afc4a169632f903f693095b4629a7ea271d5a0cf2c99.lock
+2022-04-13 20:02:45,629:INFO: --------Start Training!--------
+2022-04-13 20:08:14,546:INFO: --------Start Training!--------
+2022-04-13 20:09:03,138:INFO: --------Start Training!--------
+2022-04-13 20:11:10,883:INFO: Lock 1953158032968 acquired on C:\Users\wushuo/.cache\huggingface\transformers\d4bb65fac1f629b879ae238c27022568307f79a7aa4d55060745f828812b4dd0.2bbf3a8935447a5e3abcc0d62367c14e846bd3595ebb28a305e457ad1d24ff8f.lock
+2022-04-13 20:11:28,640:INFO: Lock 1953158032968 released on C:\Users\wushuo/.cache\huggingface\transformers\d4bb65fac1f629b879ae238c27022568307f79a7aa4d55060745f828812b4dd0.2bbf3a8935447a5e3abcc0d62367c14e846bd3595ebb28a305e457ad1d24ff8f.lock
+2022-04-13 20:11:30,202:INFO: Lock 1953158226552 acquired on C:\Users\wushuo/.cache\huggingface\transformers\dcc42b340ea5a080f1a13132f5978e80ce76130d35af320cad1c27c268a3dffa.ff15e5badd62fb8a20e8c848b63297b6fce289d7feebdd3bcd8dc516c4df22d5.lock
+2022-04-13 20:11:40,659:INFO: Lock 1953158226552 released on C:\Users\wushuo/.cache\huggingface\transformers\dcc42b340ea5a080f1a13132f5978e80ce76130d35af320cad1c27c268a3dffa.ff15e5badd62fb8a20e8c848b63297b6fce289d7feebdd3bcd8dc516c4df22d5.lock
+2022-04-13 20:11:43,077:INFO: --------Start Training!--------
+2022-04-13 20:12:23,950:INFO: --------Start Training!--------
+2022-04-13 20:13:37,018:INFO: --------Start Training!--------
+2022-04-13 20:14:50,127:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:34:13,260:INFO: --------Start Training!--------
+2022-04-13 20:34:15,589:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:35:04,053:INFO: --------Start Training!--------
+2022-04-13 20:35:06,357:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:35:35,781:INFO: --------Start Training!--------
+2022-04-13 20:35:38,068:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:55:18,606:INFO: --------Start Training!--------
+2022-04-13 20:55:20,940:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:57:02,023:INFO: --------Start Training!--------
+2022-04-13 20:57:04,320:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 20:58:46,602:INFO: --------Start Training!--------
+2022-04-13 20:58:48,882:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 21:16:21,124:INFO: --------Start Training!--------
+2022-04-13 21:16:23,483:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 22:40:56,937:INFO: --------Start Training!--------
+2022-04-13 22:42:42,606:INFO: --------Start Training!--------
+2022-04-13 22:42:45,004:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 22:50:00,015:INFO: --------Start Training!--------
+2022-04-13 22:50:02,315:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 22:51:54,042:INFO: --------Start Training!--------
+2022-04-13 22:51:56,482:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 22:53:30,983:INFO: --------Start Training!--------
+2022-04-13 22:53:33,273:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 22:57:52,851:INFO: --------Start Training!--------
+2022-04-13 22:57:55,161:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 23:00:59,966:INFO: --------Start Training!--------
+2022-04-13 23:01:02,251:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 23:01:57,165:INFO: --------Start Training!--------
+2022-04-13 23:01:59,477:INFO: Epoch: 1,train loss: 2.6574806874258474
+2022-04-13 23:02:10,591:INFO: Epoch: 1,vailm em: 0.0
+2022-04-13 23:02:50,832:INFO: --------Start Training!--------
+2022-04-13 23:03:09,233:INFO: Epoch: 1,train loss: 0.9018918157722239
+2022-04-13 23:03:10,828:INFO: Epoch: 1,vailm em: 0.0005
+2022-04-13 23:03:29,072:INFO: Epoch: 2,train loss: 0.9327433900816654
+2022-04-13 23:03:30,688:INFO: Epoch: 2,vailm em: 0.0015
+2022-04-13 23:03:48,001:INFO: Epoch: 3,train loss: 0.9449981867069408
+2022-04-13 23:03:49,620:INFO: Epoch: 3,vailm em: 0.001
+2022-04-13 23:04:58,900:INFO: --------Start Training!--------
+2022-04-13 23:05:16,372:INFO: Epoch: 1,train loss: 0.9018918157722239
+2022-04-13 23:05:17,999:INFO: Epoch: 1,vailm em: 0.0005
+2022-04-13 23:05:35,970:INFO: Epoch: 2,train loss: 0.9327433900816654
+2022-04-13 23:05:37,591:INFO: Epoch: 2,vailm em: 0.0015
+2022-04-14 10:12:44,303:INFO: --------Start Training!--------
+2022-04-14 10:13:35,534:INFO: --------Start Training!--------
+2022-04-14 10:26:29,294:INFO: --------Start Training!--------
+2022-04-14 10:26:51,457:INFO: Epoch: 1,train loss: 0.9559476516386691
+2022-04-14 10:45:02,298:INFO: --------Start Training!--------
+2022-04-14 10:45:15,309:INFO: Epoch: 1,train loss: 1.2021605845182817
+2022-04-14 10:45:16,803:INFO: Epoch: 1,vailm em: 0.7585
+2022-04-14 10:45:32,432:INFO: Epoch: 2,train loss: 1.2667208099373188
+2022-04-14 10:45:33,945:INFO: Epoch: 2,vailm em: 0.762
+2022-04-14 10:45:46,710:INFO: Epoch: 3,train loss: 1.288090930061806
+2022-04-14 10:45:48,218:INFO: Epoch: 3,vailm em: 0.762
+2022-04-14 10:46:00,978:INFO: Epoch: 4,train loss: 1.3041976066819951
+2022-04-14 10:46:02,483:INFO: Epoch: 4,vailm em: 0.763
+2022-04-14 10:46:44,949:INFO: --------Start Training!--------
+2022-04-14 10:46:59,054:INFO: Epoch: 1,train loss: 1.2021605845182817
+2022-04-14 10:48:44,062:INFO: --------Start Training!--------
+2022-04-14 10:50:18,617:INFO: --------Start Training!--------
+2022-04-14 10:51:18,176:INFO: Epoch: 1,train loss: 0.7663353850542332
+2022-04-14 10:51:25,949:INFO: Epoch: 1,vailm em: 0.0003
+2022-04-14 10:52:24,527:INFO: Epoch: 2,train loss: 0.8836196907795966
+2022-04-14 10:52:32,478:INFO: Epoch: 2,vailm em: 0.0
+2022-04-14 10:54:06,487:INFO: --------Start Training!--------
+2022-04-14 10:54:13,217:INFO: Epoch: 1,train loss: 1.7254789253921374
+2022-04-14 10:54:13,993:INFO: Epoch: 1,vailm em: 0.002
+2022-04-14 10:54:50,522:INFO: --------Start Training!--------
+2022-04-14 10:55:54,182:INFO: Epoch: 1,train loss: 0.7398339982232095
+2022-04-14 10:56:01,837:INFO: Epoch: 1,vailm em: 0.8938
+2022-04-14 10:57:47,212:INFO: --------Start Training!--------
+2022-04-14 10:58:50,635:INFO: Epoch: 1,train loss: 0.7398339982232095
+2022-04-14 10:58:58,187:INFO: Epoch: 1,vailm em: 0.8938
+2022-04-14 10:59:42,401:INFO: --------Start Training!--------
+2022-04-14 11:00:54,087:INFO: Epoch: 1,train loss: 0.7398339982232095
+2022-04-14 11:01:07,766:INFO: Epoch: 1,vailm em: 0.0001
+2022-04-14 12:21:18,616:INFO: --------Start Training!--------
+2022-04-14 12:22:25,731:INFO: Epoch: 1,train loss: 0.7398339982232095
+2022-04-14 13:04:51,820:INFO: --------Start Training!--------
+2022-04-14 13:05:58,549:INFO: Epoch: 1,train loss: 0.9898219367521058
+2022-04-14 13:06:07,579:INFO: Epoch: 1,vailm em: 0.8475
+2022-04-14 13:07:14,028:INFO: Epoch: 2,train loss: 1.073913389175435
+2022-04-14 13:07:22,070:INFO: Epoch: 2,vailm em: 0.9264
+2022-04-14 13:08:28,992:INFO: Epoch: 3,train loss: 1.1233448371254013
+2022-04-14 13:08:37,366:INFO: Epoch: 3,vailm em: 0.9432
+2022-04-14 13:09:43,357:INFO: Epoch: 4,train loss: 1.1592229575544273
+2022-04-14 13:09:51,323:INFO: Epoch: 4,vailm em: 0.9519
+2022-04-14 13:11:01,451:INFO: Epoch: 5,train loss: 1.1884247052258223
+2022-04-14 13:11:10,378:INFO: Epoch: 5,vailm em: 0.9565
+2022-04-14 13:12:17,059:INFO: Epoch: 6,train loss: 1.212629582536237
+2022-04-14 13:12:25,115:INFO: Epoch: 6,vailm em: 0.9567
+2022-04-14 13:13:35,872:INFO: Epoch: 7,train loss: 1.234394374040839
+2022-04-14 13:13:44,117:INFO: Epoch: 7,vailm em: 0.9601
+2022-04-14 13:14:55,683:INFO: Epoch: 8,train loss: 1.2545960119434074
+2022-04-14 13:15:03,856:INFO: Epoch: 8,vailm em: 0.9595
+2022-04-14 13:16:16,725:INFO: Epoch: 9,train loss: 1.2738617269882877
+2022-04-14 13:16:24,921:INFO: Epoch: 9,vailm em: 0.9625
+2022-04-14 13:47:18,018:INFO: --------Start Training!--------
+2022-04-14 13:47:49,738:INFO: --------Start Training!--------
+2022-04-14 13:49:12,567:INFO: Epoch: 1,train loss: 3.363410201565973
+2022-04-14 13:51:11,804:INFO: Epoch: 1,vailm em: 0.125
+2022-04-14 13:51:13,801:INFO: Epoch: 2,train loss: 5.216114792330512
+2022-04-14 13:51:17,701:INFO: Epoch: 2,vailm em: 0.48
+2022-04-14 13:51:19,179:INFO: Epoch: 3,train loss: 5.9617183105698945
+2022-04-14 13:51:19,330:INFO: Epoch: 3,vailm em: 0.565
+2022-04-14 13:51:20,823:INFO: Epoch: 4,train loss: 6.339368257029303
+2022-04-14 13:51:20,991:INFO: Epoch: 4,vailm em: 0.66
+2022-04-14 13:51:22,497:INFO: Epoch: 5,train loss: 6.599608508163485
+2022-04-14 13:51:22,664:INFO: Epoch: 5,vailm em: 0.685
+2022-04-14 13:51:24,174:INFO: Epoch: 6,train loss: 6.809082290221905
+2022-04-14 13:51:24,342:INFO: Epoch: 6,vailm em: 0.715
+2022-04-14 13:51:25,844:INFO: Epoch: 7,train loss: 6.998255081731697
+2022-04-14 13:51:26,010:INFO: Epoch: 7,vailm em: 0.73
+2022-04-14 13:51:27,520:INFO: Epoch: 8,train loss: 7.174950581429334
+2022-04-14 13:51:27,693:INFO: Epoch: 8,vailm em: 0.73
+2022-04-14 13:51:29,197:INFO: Epoch: 9,train loss: 7.342875306205503
+2022-04-14 13:51:29,389:INFO: Epoch: 9,vailm em: 0.73
+2022-04-14 13:52:13,535:INFO: --------Start Training!--------
+2022-04-14 13:52:15,301:INFO: Epoch: 1,train loss: 3.363410201565973
+2022-04-14 13:52:15,467:INFO: Epoch: 1,vailm em: 0.0
+2022-04-14 13:52:16,794:INFO: Epoch: 2,train loss: 5.204258141846492
+2022-04-14 13:52:16,953:INFO: Epoch: 2,vailm em: 0.0
+2022-04-14 13:52:18,286:INFO: Epoch: 3,train loss: 5.950931884091476
+2022-04-14 13:52:18,449:INFO: Epoch: 3,vailm em: 0.0
+2022-04-14 13:52:19,758:INFO: Epoch: 4,train loss: 6.329677579731777
+2022-04-14 13:52:19,916:INFO: Epoch: 4,vailm em: 0.0
+2022-04-14 13:52:21,241:INFO: Epoch: 5,train loss: 6.584577295286902
+2022-04-14 13:52:21,400:INFO: Epoch: 5,vailm em: 0.0
+2022-04-14 13:52:22,761:INFO: Epoch: 6,train loss: 6.790356400711783
+2022-04-14 13:52:22,956:INFO: Epoch: 6,vailm em: 0.005
+2022-04-14 13:52:25,508:INFO: Epoch: 7,train loss: 6.975714613394491
+2022-04-14 13:52:25,668:INFO: Epoch: 7,vailm em: 0.0
+2022-04-14 13:52:27,002:INFO: Epoch: 8,train loss: 7.14770549561443
+2022-04-14 13:52:27,163:INFO: Epoch: 8,vailm em: 0.005
+2022-04-14 13:52:28,600:INFO: Epoch: 9,train loss: 7.316219379932716
+2022-04-14 13:52:28,765:INFO: Epoch: 9,vailm em: 0.005
+2022-04-14 14:02:39,939:INFO: --------Start Training!--------
+2022-04-14 14:02:41,759:INFO: Epoch: 1,train loss: 3.363410201565973
+2022-04-14 14:05:05,208:INFO: Epoch: 1,vailm em: 0.0
+2022-04-14 14:05:06,602:INFO: Epoch: 2,train loss: 5.204258141846492
+2022-04-14 14:07:28,912:INFO: --------Start Training!--------
+2022-04-14 14:07:43,039:INFO: Epoch: 1,train loss: 1.6135029904676925
+2022-04-14 14:10:43,549:INFO: --------Start Training!--------
+2022-04-14 14:12:34,186:INFO: Epoch: 1,train loss: 0.7904847149387697
+2022-04-14 14:12:47,645:INFO: Epoch: 1,vailm em: 0.8361344537815126
+2022-04-14 14:14:40,886:INFO: Epoch: 2,train loss: 0.8716354389397265
+2022-04-14 14:14:55,055:INFO: Epoch: 2,vailm em: 0.8965478083125142
+2022-04-14 14:16:49,445:INFO: Epoch: 3,train loss: 0.9203795200118391
+2022-04-14 14:17:03,006:INFO: Epoch: 3,vailm em: 0.9060299795593914
+2022-04-14 14:19:05,626:INFO: Epoch: 4,train loss: 0.9583585022135428
+2022-04-14 14:19:19,510:INFO: Epoch: 4,vailm em: 0.9211333181921417
+2022-04-14 14:21:21,779:INFO: Epoch: 5,train loss: 0.9899871217052435
+2022-04-14 14:21:35,501:INFO: Epoch: 5,vailm em: 0.9297637974108562
+2022-04-14 14:23:40,101:INFO: Epoch: 6,train loss: 1.0185436981598872
+2022-04-14 14:23:53,927:INFO: Epoch: 6,vailm em: 0.9336248012718601
+2022-04-14 14:26:00,187:INFO: Epoch: 7,train loss: 1.045616262542456
+2022-04-14 14:26:14,373:INFO: Epoch: 7,vailm em: 0.9328298887122417
+2022-04-14 14:48:04,938:INFO: --------Start Training!--------
+2022-04-14 14:49:42,660:INFO: Epoch: 1,train loss: 0.8146756274649452
+2022-04-14 14:50:09,648:INFO: Epoch: 1,vailm em: 0.8369009766068589
+2022-04-14 14:51:50,076:INFO: Epoch: 2,train loss: 0.8984368056144708
+2022-04-14 14:52:20,631:INFO: Epoch: 2,vailm em: 0.9004655916420622
+2022-04-14 14:54:04,380:INFO: Epoch: 3,train loss: 0.9477828910226346
+2022-04-14 14:54:34,357:INFO: Epoch: 3,vailm em: 0.910799454917102
+2022-04-14 14:56:22,160:INFO: Epoch: 4,train loss: 0.9858970694151711
+2022-04-14 14:56:51,533:INFO: Epoch: 4,vailm em: 0.9143197819668408
+2022-04-14 14:58:40,938:INFO: Epoch: 5,train loss: 1.018088538975907
+2022-04-14 14:59:09,936:INFO: Epoch: 5,vailm em: 0.9158812173518056
+2022-04-14 15:01:00,030:INFO: Epoch: 6,train loss: 1.0464625782876622
+2022-04-14 15:01:28,658:INFO: Epoch: 6,vailm em: 0.9178684987508517
+2022-04-14 15:03:19,269:INFO: Epoch: 7,train loss: 1.0737306732483833
+2022-04-14 15:03:46,986:INFO: Epoch: 7,vailm em: 0.9211049284578696
