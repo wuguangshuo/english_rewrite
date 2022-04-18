@@ -9,6 +9,8 @@ def set_train_args():
     parser.add_argument('--batch_size',type=int,default=64)
     parser.add_argument("--log_dir", type=str, default='./train.log', help='日志的存放位置')
     parser.add_argument("--tensorboard_dir", type=str, default='./runs/', help='tensorboard的存放位置')
-    parser.add_argument("--print_num", type=int, default=5, help='tensorboard的存放位置')
+    parser.add_argument("--print_num", type=int, default=5, help='最大打印数目')
+    parser.add_argument("--model_path", type=str, default="google/bert_uncased_L-4_H-256_A-4", help='预训练模型的选择')
+
     args = parser.parse_args()
     return args

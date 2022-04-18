@@ -4,11 +4,11 @@ from transformers import AutoModel
 
 
 class TaggerRewriteModel(nn.Module):
-    def __init__(self, config):
+    def __init__(self, config,args):
         super().__init__()
         self.num_labels = config.num_labels
-        self.bert = AutoModel.from_pretrained("google/bert_uncased_L-4_H-256_A-4")
-        self.qa_outputs = nn.Linear(256, config.num_labels)
+        self.bert = AutoModel.from_pretrained(args.model_path)
+        self.qa_outputs = nn.Linear(config.hidden_size, config.num_labels)
 
     def forward(
         self,
@@ -21,9 +21,6 @@ class TaggerRewriteModel(nn.Module):
         start=None,
         end=None,
         insert_pos=None,
-        start_ner=None,
-        end_ner=None,
-        target=None,
     ):
 
         outputs = self.bert(
@@ -44,25 +41,13 @@ class TaggerRewriteModel(nn.Module):
 
         outputs = (start_logits, end_logits, insert_pos_logits)
         if start is not None:
-            # If we are on multi-GPU, split add a dimension
-            if len(start.size()) > 1:
-                start_positions = start.squeeze(-1)
-            if len(end.size()) > 1:
-                end_positions = end.squeeze(-1)
-            # sometimes the start/end positions are outside our model inputs, we ignore these terms
-            ignored_index = start_logits.size(1)
-            start.clamp_(0, ignored_index)
-            end.clamp_(0, ignored_index)
-            insert_pos.clamp_(0, ignored_index)
-
-            loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
+            loss_fct = CrossEntropyLoss()
             start_loss = loss_fct(start_logits, start)
             end_loss = loss_fct(end_logits, end)
             insert_loss = loss_fct(insert_pos_logits, insert_pos)
-
             total_loss = (start_loss + end_loss + insert_loss) / 3
             outputs = (total_loss,) + outputs
             return outputs
         else:
             return (None,) + outputs
-            # (loss), start_logits, end_logits, (hidden_states), (attentions)
+

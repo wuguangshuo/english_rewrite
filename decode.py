@@ -1,6 +1,7 @@
 import torch
 
 from tqdm import tqdm
+import numpy as np
 
 from metrics import evaluate
 
@@ -8,26 +9,13 @@ def find_best_answer(start_probs, end_probs):
     start_probs, end_probs = start_probs.unsqueeze(0), end_probs.unsqueeze(0)
     prob_start, best_start = torch.max(start_probs, 1)
     prob_end, best_end = torch.max(end_probs, 1)
-    num = 0
-    while True:
-        if num > 3:
-            break
-        if best_end >= best_start:
-            break
-        else:
-            start_probs[0][best_start], end_probs[0][best_end] = 0.0, 0.0
-            prob_start, best_start = torch.max(start_probs, 1)
-            prob_end, best_end = torch.max(end_probs, 1)
-        num += 1
-    max_prob = prob_start * prob_end
-
     if best_start <= best_end:
-        return (best_start, best_end), max_prob
+        return best_start, best_end
     else:
-        return (best_end, best_start), max_prob
+        return best_end, best_start
 
 def find_best_answer_for_passage(start_probs, end_probs, split_index):
-    (best_end, best_start), max_prob = find_best_answer(start_probs[1:split_index], end_probs[1:split_index])
+    best_end, best_start= find_best_answer(start_probs[1:split_index], end_probs[1:split_index])
     return best_end, best_start
 
 
@@ -45,7 +33,7 @@ def predict(model, valid_loader):
             start_logits, end_logits, insert_pos_logits = outputs[1], outputs[2], outputs[3]
             # 解码出真实label
             for i in range(len(token)):
-                context=ori_sen[i][1].strip().split()
+                context=ori_sen[i][1].strip().split(' ')
                 split_index = len(context)+1
                 best_start, best_end= find_best_answer_for_passage(start_logits[i], end_logits[i], split_index)
                 info_pos = (best_start.cpu().numpy()[0], best_end.cpu().numpy()[0])
@@ -55,10 +43,16 @@ def predict(model, valid_loader):
                 if len(text) == 0 or text in current:
                     all_outputs.append(current)
                     continue
-                insert_pos = insert_pos_logits[i].argmax().cpu().numpy()
+                # insert_pos = insert_pos_logits[i].argmax().cpu().numpy()
+                insert_pos=insert_pos_logits[i].cpu().numpy()
+                insert_pos = np.argmax(insert_pos)
                 insert_pos=insert_pos-context_len
-                if insert_pos>=0:
+                if insert_pos>0:
                     rewritten_text = current[:insert_pos]+text+current[insert_pos:]
+                    all_outputs.append(rewritten_text)
+                    continue
+                elif insert_pos==0:
+                    rewritten_text = text+current
                     all_outputs.append(rewritten_text)
                     continue
                 else:
@@ -67,7 +61,7 @@ def predict(model, valid_loader):
     return all_outputs
 
 
-def validate(model, valid_loader, valid_df, args):
+def validate(model, valid_loader, valid_df, args,mode='val'):
     predictions = predict(model, valid_loader)
     valid_label = valid_df['label'].tolist()
     a = valid_df['a'].tolist()
@@ -75,11 +69,12 @@ def validate(model, valid_loader, valid_df, args):
     current = valid_df['current'].tolist()
     # print(len(predictions),len(valid_label))
     predictions = [' '.join(x) for x in predictions]
-    valid_metric = evaluate(predictions, valid_label)
+    valid_metric = evaluate(a,current,predictions, valid_label,mode)
     print(valid_metric)
     print('------------')
-    for i, (a, b, current, p, l) in enumerate(zip(a, b, current, predictions, valid_label)):
-        print(a,' | ', b,' | ', current,' | ', p,' | ', l)
-        if i >= args.print_num:
-            break
+    if mode=='val':
+        for i, (a, b, current, p, l) in enumerate(zip(a, b, current, predictions, valid_label)):
+            print(a,' | ', b,' | ', current,' | ', p,' | ', l)
+            if i >= args.print_num:
+                break
     return valid_metric
