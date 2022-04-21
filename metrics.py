@@ -2,7 +2,7 @@ import os
 
 def evaluate(a,current,pred, label,mode):
     em_count = 0.0
-    if mode=='val':
+    if mode=='val':#验证集无须写入bad_case
         for idx,(p, l) in enumerate(zip(pred, label)):
             if p.strip()==l.strip():
                 em_count+=1

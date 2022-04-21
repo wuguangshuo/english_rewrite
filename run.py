@@ -1,4 +1,4 @@
-from transformers import BertTokenizer,BertConfig,AutoConfig
+from transformers import AutoConfig
 from torch.utils.data import DataLoader
 import torch
 from torch.nn import CrossEntropyLoss
@@ -15,7 +15,7 @@ from sklearn.utils import shuffle
 from model import TaggerRewriteModel
 from utils import seed_everything,set_logger
 from config import set_train_args
-from data_utils import TaggerRewriterDataset,tagger_collate_fn
+from data_utils import TaggerRewriterDataset
 from decode import validate
 
 #超参数设置
@@ -33,25 +33,25 @@ df=shuffle(df)
 df['label'] = df['label'].apply(lambda x: x.replace("(","").replace(")",""))
 df.dropna(how='any', inplace=True)
 
+#划分数据集
 train_length = int(len(df) * 0.8)
-train_df = df.iloc[:train_length].iloc[:, :]
+train_df = df.iloc[:train_length]
 valid_df_data = df.iloc[train_length:]
 
 #划分验证集和测试集
 test_length = int(len(valid_df_data) * 0.5)
-valid_df=valid_df_data.iloc[:test_length].iloc[:, :]
-test_df=valid_df_data.iloc[test_length:].iloc[:, :]
+valid_df=valid_df_data.iloc[:test_length]
+test_df=valid_df_data.iloc[test_length:]
 
 #训练集处理
-tokenizer = BertTokenizer.from_pretrained(args.model_path)
-train_set = TaggerRewriterDataset(train_df, tokenizer)
-train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=False,collate_fn=tagger_collate_fn)
+train_set = TaggerRewriterDataset(train_df,args)
+train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=False,collate_fn=train_set.tagger_collate_fn)
 
-valid_set = TaggerRewriterDataset(valid_df, tokenizer, valid=True)
-valid_loader = DataLoader(valid_set, batch_size=args.batch_size,shuffle=False, collate_fn=tagger_collate_fn)
+valid_set = TaggerRewriterDataset(valid_df,args,valid=True)
+valid_loader = DataLoader(valid_set, batch_size=args.batch_size,shuffle=False, collate_fn=valid_set.tagger_collate_fn)
 
-test_set = TaggerRewriterDataset(test_df, tokenizer, valid=True)
-test_loader = DataLoader(test_set, batch_size=args.batch_size,shuffle=False, collate_fn=tagger_collate_fn)
+test_set = TaggerRewriterDataset(test_df,args,valid=True)
+test_loader = DataLoader(test_set, batch_size=args.batch_size,shuffle=False, collate_fn=test_set.tagger_collate_fn)
 
 #模型设置
 config = AutoConfig.from_pretrained(args.model_path)
@@ -61,14 +61,11 @@ model.to(device)
 total_params = sum(p.numel() for p in model.parameters())
 print(f'{total_params:,} total parameters.')
 
-no_decay = ["bias", "LayerNorm.weight"]
+no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
+param_optimizer = list(model.named_parameters())
 optimizer_grouped_parameters = [
-    {
-        "params": [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)],
-        "weight_decay": 0.0,
-    },
-    {"params": [p for n, p in model.named_parameters() if any(
-        nd in n for nd in no_decay)], "weight_decay": 0.0},
+    {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
+    {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
 ]
 optimizer = AdamW(optimizer_grouped_parameters,
                   lr=args.lr, eps=args.adam_epsilon)
@@ -79,20 +76,21 @@ scheduler = get_cosine_schedule_with_warmup(optimizer,
 #模型训练
 criterion = CrossEntropyLoss().cuda()
 best_valid_score=0.0
-losses = 0.0
 logging.info("--------Start Training!--------")
 for epoch in range(1, args.epoch):
     model.train()
-    for i, (ori_sen, token, token_type, start, end, insert_pos) in enumerate(tqdm(train_loader)):
+    losses=0.0#每一轮都需要将losses重新设置为0
+    for i, (ori_sen, token, token_type,token_starts ,start, end, insert_pos) in enumerate(tqdm(train_loader)):
         input_mask = (token > 0).to(device)
-        token, input_mask, token_type, start, end, insert_pos = \
-            token.to(device), input_mask.to(device), token_type.to(device), start.to(
+        token, input_mask, token_type,token_starts , start, end, insert_pos = \
+            token.to(device), input_mask.to(device), token_type.to(device),token_starts.to(device), start.to(
                 device), end.to(device), insert_pos.to(device)
-        outputs = model(input_ids=token, attention_mask=input_mask, token_type_ids=token_type,
+        outputs = model(input_ids=token, attention_mask=input_mask, token_type_ids=token_type,token_starts=token_starts,
                         start=start, end=end, insert_pos=insert_pos)
         loss = outputs[0]
         losses+=loss.item()
         optimizer.zero_grad()
+        # model.zero_grad()
         loss.backward()
         optimizer.step()
         scheduler.step()

@@ -24,29 +24,33 @@ def predict(model, valid_loader):
     all_outputs = []
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     with torch.no_grad():
-        for i, (ori_sen, token, token_type, start, end, insert_pos) in enumerate(tqdm(valid_loader)):
+        for i, (ori_sen, token, token_type, token_starts, start, end, insert_pos) in enumerate(tqdm(valid_loader)):
             input_mask = (token > 0).to(device)
-            token, input_mask, token_type = \
-                token.to(device), input_mask.to(device), token_type.to(device)
+            token, input_mask, token_type, token_starts = token.to(device), input_mask.to(device), token_type.to(device), token_starts.to(device)
             outputs = model(input_ids=token, attention_mask=input_mask, token_type_ids=token_type,
-                            start=None, end=end, insert_pos=insert_pos)
+                            token_starts=token_starts,start=None, end=end, insert_pos=insert_pos)
+
             start_logits, end_logits, insert_pos_logits = outputs[1], outputs[2], outputs[3]
             # 解码出真实label
             for i in range(len(token)):
                 context=ori_sen[i][1].strip().split(' ')
-                split_index = len(context)+1
+                split_index = len(context)+1#加1是因为有cls影响
                 best_start, best_end= find_best_answer_for_passage(start_logits[i], end_logits[i], split_index)
                 info_pos = (best_start.cpu().numpy()[0], best_end.cpu().numpy()[0])
+                #找到需要插入的单词
                 text = context[info_pos[0]:(info_pos[1]+1)]
-                context_len = sum(token_type[i].cpu().numpy() == 0)
-                current=ori_sen[i][3].strip().split()
+                current=ori_sen[i][3].strip().split(' ')
+                #若待插入单词长度为0或者已经在回复中，明显不合理的标签预测
                 if len(text) == 0 or text in current:
                     all_outputs.append(current)
                     continue
-                # insert_pos = insert_pos_logits[i].argmax().cpu().numpy()
-                insert_pos=insert_pos_logits[i].cpu().numpy()
-                insert_pos = np.argmax(insert_pos)
-                insert_pos=insert_pos-context_len
+                #找到插入位置索引，减去上文和sep影响
+                insert_pos = insert_pos_logits[i].argmax().cpu().numpy()
+                insert_pos-=(split_index+1)
+                #下面这种也可以找到插入位置索引
+                # current_len=len(current)
+                # insert_pos=insert_pos_logits[i].cpu().numpy()
+                # insert_pos = np.argmax(insert_pos[context_len+1:context_len+current_len+2])
                 if insert_pos>0:
                     rewritten_text = current[:insert_pos]+text+current[insert_pos:]
                     all_outputs.append(rewritten_text)
