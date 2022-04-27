@@ -79,6 +79,7 @@ def validate(model, valid_loader, valid_df, args,mode='val'):
     if mode=='val':
         for i, (a, b, current, p, l) in enumerate(zip(a, b, current, predictions, valid_label)):
             print(a,' | ', b,' | ', current,' | ', p,' | ', l)
+            print('-----------------')
             if i >= args.print_num:
                 break
     return valid_metric

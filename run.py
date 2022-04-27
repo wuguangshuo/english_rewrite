@@ -25,12 +25,12 @@ seed_everything(args.seed)
 writer = SummaryWriter(os.path.join(args.tensorboard_dir, time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())))
 set_logger(args.log_dir)
 device='cuda' if torch.cuda.is_available() else 'cpu'
-#读取和划分数据集
-df = pd.read_csv('./dataset/df_rewrite_airline_music_and_contact_0401.csv', sep=",", names=['a', 'b', 'current', 'label','replace_pos'], dtype=str,
+#读取和划分数据集 正样本label_type为0,代表需要改写,负样本label_type为1，代表需要改写
+df = pd.read_csv('./dataset/new_data.csv', sep=",", names=['a', 'b', 'current', 'label','replace_pos','label_type'], dtype=str,
                    encoding='utf-8')[1:]
 df=shuffle(df)
 #去除数据集中的(),保留其中的内容
-df['label'] = df['label'].apply(lambda x: x.replace("(","").replace(")",""))
+# df['label'] = df['label'].apply(lambda x: x.replace("(","").replace(")",""))
 df.dropna(how='any', inplace=True)
 
 #划分数据集

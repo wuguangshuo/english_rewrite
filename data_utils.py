@@ -9,6 +9,7 @@ class TaggerRewriterDataset(Dataset):
         self.is_valid = valid#判断是否信息抽取
         self.current = df['current'].values.tolist()
         self.label = df['label'].values.tolist()
+        self.label_type=df['label_type'].values.tolist()
         self.pointer = []#储存指针信息
         self.valid_label = []#记录label
         self.ori_sentence=[]#记录 文字信息
@@ -28,6 +29,15 @@ class TaggerRewriterDataset(Dataset):
             # 改写或者作为验证集时不对关键信息进行抽取
             if self.is_valid:
                 _label = [None] * 3
+                self.pointer.append(_label)
+                self.ori_sentence.append([',', self.a[i], ',', self.current[i], ','])
+                self.valid_label.append(self.label[i])
+                self.context_new_input.append(context_new_input)
+                self.utterance_token.append(utterance_token)
+                self.new_input.append(new_input)
+                continue
+            if self.label_type[i]=='1':
+                _label = [0] * 3
                 self.pointer.append(_label)
                 self.ori_sentence.append([',', self.a[i], ',', self.current[i], ','])
                 self.valid_label.append(self.label[i])
